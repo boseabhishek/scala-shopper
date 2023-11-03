@@ -20,6 +20,13 @@ class ShoppingCartSpec extends AnyFlatSpec {
     assert(sc.checkout(basket) == 2.05)
   }
 
+  it should "return 0.85 when basket has one apple and one orange" in {
+    val sc = new ShoppingCart()
+    val basket = List("apple", "orange")
+
+    assert(sc.checkout(basket) == 0.85)
+  }
+
   behavior of "onlyApplesOrOranges"
 
   it should "return empty list when basket is empty" in {
