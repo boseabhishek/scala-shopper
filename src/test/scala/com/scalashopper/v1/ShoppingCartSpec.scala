@@ -13,6 +13,13 @@ class ShoppingCartSpec extends AnyFlatSpec {
     assert(sc.checkout(basket) == 0.0)
   }
 
+  it should "return 0.0 when basket has no apples and oranges" in {
+    val sc = new ShoppingCart()
+    val basket = List("banana", "fig", "sandwich")
+
+    assert(sc.checkout(basket) == 0.0)
+  }
+
   it should "return 2.05 when basket has 3 apples and one orange" in {
     val sc = new ShoppingCart()
     val basket = List("apple", "apple", "apple", "orange")
@@ -32,6 +39,27 @@ class ShoppingCartSpec extends AnyFlatSpec {
     val basket = List("apple", "orange", "apple", "orange")
 
     assert(sc.checkout(basket) == 1.70)
+  }
+
+  it should "return 1.95 when basket has 2 apples and 3 oranges" in {
+    val sc = new ShoppingCart()
+    val basket = List("apple", "orange", "apple", "orange", "orange")
+
+    assert(sc.checkout(basket) == 1.95)
+  }
+
+  it should "return 6 when basket has 10 apples" in {
+    val sc = new ShoppingCart()
+    val basket = List.fill(10)("apple")
+
+    assert(sc.checkout(basket) == 6)
+  }
+
+  it should "return 2.5 when basket has 10 oranges" in {
+    val sc = new ShoppingCart()
+    val basket = List.fill(10)("orange")
+
+    assert(sc.checkout(basket) == 2.5)
   }
 
   behavior of "onlyApplesOrOranges"
