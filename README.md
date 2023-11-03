@@ -1,3 +1,18 @@
 # scala-shopper
 
-<TODO> service containing the business logic to calculate total price of apples and oranges at checkout.
+This repo contains the one and only `checkout()` functionality.
+
+## Prerequisites:
+
+- Scala 2.13.8
+- Java 8
+- sbt > 1.9.6
+
+
+## Run tests
+
+This will run all the tests related to `checkout()` method.
+```shell
+sbt test
+```
+
