@@ -55,14 +55,14 @@ class ShoppingCartSpec extends AnyFlatSpec {
     assert(sc.checkout(basket) == 1.95)
   }
 
-  it should "return 6 when basket has 10 apples" in {
+  it should "return 6 when basket has 10 apples only" in {
     val sc = new ShoppingCart()
     val basket = List.fill(10)(Apple())
 
     assert(sc.checkout(basket) ===  5.999999999999999) // encountered small precision issues
   }
 
-  it should "return 2.5 when basket has 10 oranges" in {
+  it should "return 2.5 when basket has 10 oranges only" in {
     val sc = new ShoppingCart()
     val basket = List.fill(10)(Orange())
 
@@ -74,5 +74,45 @@ class ShoppingCartSpec extends AnyFlatSpec {
     val basket = List(Apple(price = 0.2), Orange(price = 0.2), Apple(price = 0.2), Orange(price = 0.2), Orange(price = 0.2))
 
     assert(sc.checkout(basket) == 1.0)
+  }
+
+  it should "return 3.4 when basket has a combination of apple and oranges w/ valid offers" in {
+    val sc = new ShoppingCart()
+    val items: List[Item] = List(
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Orange(offer = Some(ThreeForTwo)),
+      Orange(offer = Some(ThreeForTwo)),
+      Orange(offer = Some(ThreeForTwo)),
+      Orange(offer = Some(ThreeForTwo)),
+      Orange(offer = Some(ThreeForTwo)),
+    )
+    assert(sc.checkout(items) == 3.4)
+  }
+
+  it should "return 4.25 when basket has a combination of apple and oranges w/ valid offers and no offers" in {
+    val sc = new ShoppingCart()
+    val items: List[Item] = List(
+      Apple(offer = None),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Apple(offer = Some(BuyOneGetOne)),
+      Orange(offer = None),
+      Orange(offer = Some(ThreeForTwo)),
+      Orange(offer = Some(ThreeForTwo)),
+      Orange(offer = Some(ThreeForTwo)),
+      Orange(offer = Some(ThreeForTwo)),
+      Orange(offer = Some(ThreeForTwo)),
+    )
+    assert(sc.checkout(items) == 4.25)
   }
 }
