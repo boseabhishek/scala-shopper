@@ -9,6 +9,13 @@ This repo contains the one and only `checkout()` functionality.
 - sbt > 1.9.6
 
 
+## Design choice:
+
+- SOLID principles
+- Iterative Development
+- TDD
+- DRY
+
 ## Run tests:
 
 This will run all the tests related to `checkout()` method.
