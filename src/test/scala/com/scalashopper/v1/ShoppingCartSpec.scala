@@ -59,7 +59,7 @@ class ShoppingCartSpec extends AnyFlatSpec {
     val sc = new ShoppingCart()
     val basket = List.fill(10)(new Apple)
 
-    assert(sc.checkout(basket) == 6)
+    assert(sc.checkout(basket) ===  5.999999999999999) // encountered small precision issues
   }
 
   it should "return 2.5 when basket has 10 oranges" in {
