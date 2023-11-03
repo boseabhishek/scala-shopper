@@ -9,10 +9,13 @@ This repo contains the one and only `checkout()` functionality.
 - sbt > 1.9.6
 
 
-## Run tests
+## Run tests:
 
 This will run all the tests related to `checkout()` method.
 ```shell
 sbt test
 ```
 
+## TODO:
+
+- Introduce property based testing for better combination of input tests
