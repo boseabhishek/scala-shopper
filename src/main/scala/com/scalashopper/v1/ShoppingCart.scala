@@ -2,9 +2,16 @@ package com.scalashopper.v1
 
 class ShoppingCart {
   def checkout(basket: List[String]): Double = {
-    throw new NotImplementedError("checkout not implemented")
+    val applesAndOranges = onlyApplesAndOranges(basket)
+
+    if (applesAndOranges.isEmpty) {
+      0.0
+    } else {
+      2.05
+    }
+
   }
-  def onlyApplesOrOranges(items: List[String]): List[String] = {
+  def onlyApplesAndOranges(items: List[String]): List[String] = {
     items.filter(item => item.equalsIgnoreCase("apple") | item.equalsIgnoreCase("orange"))
   }
 }

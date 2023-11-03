@@ -6,13 +6,18 @@ class ShoppingCartSpec extends AnyFlatSpec {
 
   behavior of "checkout"
 
-  it should "throw NotImplementedError" in {
+  it should "return 0.0 when basket is empty" in {
     val sc = new ShoppingCart()
     val basket = List()
-    val exception = intercept[NotImplementedError] {
-      sc.checkout(basket)
-    }
-    assert(exception.getMessage.equalsIgnoreCase("checkout not implemented"))
+
+    assert(sc.checkout(basket) == 0.0)
+  }
+
+  it should "return 2.05 when basket has 3 apples and one orange" in {
+    val sc = new ShoppingCart()
+    val basket = List("apple", "apple", "apple", "orange")
+
+    assert(sc.checkout(basket) == 2.05)
   }
 
   behavior of "onlyApplesOrOranges"
@@ -20,19 +25,19 @@ class ShoppingCartSpec extends AnyFlatSpec {
   it should "return empty list when basket is empty" in {
     val sc = new ShoppingCart()
     val items = List.empty[String]
-    assert(sc.onlyApplesOrOranges(items) == Nil)
+    assert(sc.onlyApplesAndOranges(items) == Nil)
   }
 
   it should "ignore item(s) which are not apples or oranges" in {
     val sc = new ShoppingCart()
     val items = List("apple", "banana", "apple", "orange", "fig", "grape")
-    assert(sc.onlyApplesOrOranges(items) == List("apple", "apple", "orange"))
+    assert(sc.onlyApplesAndOranges(items) == List("apple", "apple", "orange"))
   }
 
   it should "return empty list when no matching items found" in {
     val sc = new ShoppingCart()
     val items = List("banana", "fig", "grape")
-    assert(sc.onlyApplesOrOranges(items) == Nil)
+    assert(sc.onlyApplesAndOranges(items) == Nil)
   }
 
 }
