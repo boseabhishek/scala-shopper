@@ -1,15 +1,23 @@
 package com.scalashopper.v1
 
 class ShoppingCart {
-  def checkout(basket: List[Item]): Double = {
-    val apples = basket.collect { case a: Apple => a }
-    val oranges = basket.collect { case o: Orange => o }
+  def checkout(items: List[Item]): Double = {
+    val apples = items.collect { case a: Apple => a }
+    val oranges = items.collect { case o: Orange => o }
 
-    val totalApplePrice = apples.foldLeft(0.0)((acc: Double, a: Apple) => acc + a.price)
-    val totalOrangePrice = oranges.foldLeft(0.0)((acc: Double, o: Orange) => acc + o.price)
+    val oranges3for2Count: Int = oranges.count { o =>
+      o.offer.contains(ThreeForTwo) && o.price == 0.25
+    }
 
-    totalApplePrice + totalOrangePrice
+    val costOfOrangesAfterOffer: Double = ((oranges3for2Count / 3) * 2 + oranges3for2Count % 3) * 0.25
 
+    val applesBuy1Get1Count: Int = apples.count { a =>
+      a.offer.contains(BuyOneGetOne) && a.price == 0.60
+    }
+
+    val costOfApplesAfterOffer: Double = (applesBuy1Get1Count / 2 + applesBuy1Get1Count % 2) * 0.60
+
+    costOfApplesAfterOffer + costOfOrangesAfterOffer
   }
 
 }

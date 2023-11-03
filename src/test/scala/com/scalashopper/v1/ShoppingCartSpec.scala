@@ -76,7 +76,7 @@ class ShoppingCartSpec extends AnyFlatSpec {
     assert(sc.checkout(basket) == 1.0)
   }
 
-  it should "return 3.4 when basket has items w/ offers" in {
+  it should "return 3.4 when basket has items w/ valid offers" in {
     val sc = new ShoppingCart()
     val items: List[Item] = List(
       Apple(offer = Some(BuyOneGetOne)),
@@ -94,4 +94,5 @@ class ShoppingCartSpec extends AnyFlatSpec {
     )
     assert(sc.checkout(items) == 3.4)
   }
+
 }
