@@ -4,8 +4,11 @@ class ShoppingCart {
   def checkout(basket: List[String]): Double = {
     val applesAndOranges = onlyApplesAndOranges(basket)
 
-    val totalApplePrice = applesAndOranges.count(x => x.equalsIgnoreCase("apple")) * 0.60
-    val totalOrangePrice = applesAndOranges.count(x => x.equalsIgnoreCase("orange")) * 0.25
+    val unitApplePrice: Double = 0.60
+    val unitOrangePrice: Double = 0.25
+
+    val totalApplePrice = applesAndOranges.count(x => x.equalsIgnoreCase("apple")) * unitApplePrice
+    val totalOrangePrice = applesAndOranges.count(x => x.equalsIgnoreCase("orange")) * unitOrangePrice
 
     totalApplePrice + totalOrangePrice
 
