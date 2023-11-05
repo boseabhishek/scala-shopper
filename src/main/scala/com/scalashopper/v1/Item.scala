@@ -1,16 +1,14 @@
 package com.scalashopper.v1
 
+sealed trait Offer
+case object BuyOneGetOne extends Offer
+case object ThreeForTwo extends Offer
+
+// allowing one offer per item
 trait Item {
   val price: Double
   val offer: Option[Offer]
 }
-
-// allowing one offer per item
-sealed trait Offer
-case object BuyOneGetOne extends Offer
-case object ThreeForTwo extends Offer
-case class Invalid(price: Double = 0.0, offer: Option[Offer] = None) extends Item
-
 // Fruits can have their own properties for later.
 trait Fruit extends Item
 
@@ -19,3 +17,6 @@ trait Fruit extends Item
 // <happens so many times in a supermarket! smh>
 case class Apple(price: Double = 0.6, offer: Option[Offer] = None) extends Fruit
 case class Orange(price: Double = 0.25, offer: Option[Offer] = None) extends Fruit
+
+// SomeOtherItem is just a placeholder item
+case class SomeOtherItem(price: Double = 0.0, offer: Option[Offer] = None) extends Item

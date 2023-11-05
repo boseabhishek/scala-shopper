@@ -13,9 +13,9 @@ class ShoppingCartSpec extends AnyFlatSpec {
     assert(sc.checkout(basket) == 0.0)
   }
 
-  it should "return 0.0 when basket has invalid types" in {
+  it should "return 0.0 when basket has invalid items" in {
     val sc = new ShoppingCart()
-    val basket = List(Invalid(), Invalid())
+    val basket = List(SomeOtherItem(), SomeOtherItem())
 
     assert(sc.checkout(basket) == 0.0)
   }
