@@ -22,12 +22,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
-      with:
-        java-version: adopt@1.17
-        cache: 'sbt'
         
     - name: Set up Scala
       uses: olafurpg/setup-scala@v14
